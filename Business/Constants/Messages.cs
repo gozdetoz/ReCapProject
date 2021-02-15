@@ -19,8 +19,21 @@ namespace Business.Constants
         public static string ColorAdded = "Renk Eklenmiştir.";
         public static string ColorDeleted = "Renk Silinmiştir.";
 
+        public static string UserUpdated = "Kullanıcı güncellenmiştir.";
+        public static string UserAdded = "Kullanıcı Eklenmiştir.";
+        public static string UserDeleted = "Kullanıcı Silinmiştir.";
 
 
+        public static string CustomerUpdated = "Müşteri güncellenmiştir.";
+        public static string CustomerAdded = "Müşteri Eklenmiştir.";
+        public static string CustomerDeleted = "Müşteri Silinmiştir.";
+
+        public static string RentalUpdated = "Kiralama güncellenmiştir.";
+        public static string RentalAdded = "Kiralama Eklenmiştir.";
+        public static string RentalDeleted = "Kiralama Silinmiştir.";
+        public static string RentalAddedWrong = "Kiralama işlemi gerçekleşemedi";
+        public static string RentalUpdatedReturnDateError = "Teslim edilmediği için kiralanamaz";
+        public static string RentalUpdatedReturnDate = "Kiralanabilir";
 
     }
 }
