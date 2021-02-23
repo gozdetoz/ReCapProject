@@ -1,3 +1,6 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.DependencyResolvers.Autofac;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -18,9 +21,27 @@ namespace WebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+              .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+               .ConfigureContainer<ContainerBuilder>(builder =>
+               {
+                   builder.RegisterModule(new AutofacBusinessModule());
+               })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        #region Aciklama
+        /*
+          .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                       .ConfigureContainer<ContainerBuilder>(builder=>
+                       {
+                           builder.RegisterModule(new AutofacBusinessModule());
+                       })
+
+          autofac yapilandirmasi icin ekledik 
+        Senin alt yapin var ama benim olusturudugum yapimi kullan yani Businesde olusturdugumuz autofac kullan
+        */
+        #endregion
     }
 }

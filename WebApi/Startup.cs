@@ -1,4 +1,4 @@
-using Business.Abstract;
+﻿using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -30,23 +30,27 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            #region Aciklama
+            //Autofac yapısını kullanacagımız için .NetCore kendi bağımlılık çözme işlemlerini kaldırdır. Bu işlemi Web Apinin Program.cs içinde tanımlaması yapıldı
             //BUS
-            services.AddSingleton<ICarService,CarManager>();
-            services.AddSingleton<IColorService, ColorManager>();
-            services.AddSingleton<IUserService, UserManager>();
-            services.AddSingleton<IRentalService, RentalManager>();
-            services.AddSingleton<ICustomerService,CustomerManager>();
-            services.AddSingleton<IBrandService, BrandManager>();
-            
+            //services.AddSingleton<ICarService, CarManager>();
+            //services.AddSingleton<IColorService, ColorManager>();
+            //services.AddSingleton<IUserService, UserManager>();
+            //services.AddSingleton<IRentalService, RentalManager>();
+            //services.AddSingleton<ICustomerService, CustomerManager>();
+            //services.AddSingleton<IBrandService, BrandManager>();
 
 
-            //DAL
-            services.AddSingleton<ICarDal, EfCarDal>();
-            services.AddSingleton<IColorDal, EfColorDal>();
-            services.AddSingleton<IUserDal, EfUserDal>();
-            services.AddSingleton<IRentalDal, EfRentalDal>();
-            services.AddSingleton<ICustomerDal, EfCustomerDal>();
-            services.AddSingleton<IBrandDal, EfBrandDal>();
+
+            ////DAL
+            //services.AddSingleton<ICarDal, EfCarDal>();
+            //services.AddSingleton<IColorDal, EfColorDal>();
+            //services.AddSingleton<IUserDal, EfUserDal>();
+            //services.AddSingleton<IRentalDal, EfRentalDal>();
+            //services.AddSingleton<ICustomerDal, EfCustomerDal>();
+            //services.AddSingleton<IBrandDal, EfBrandDal>();
+            #endregion
+
 
         }
 
