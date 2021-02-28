@@ -35,6 +35,13 @@ namespace Business.Constants
         public static string RentalUpdatedReturnDateError = "Teslim edilmediği için kiralanamaz";
         public static string RentalUpdatedReturnDate = "Kiralanabilir";
 
+
+        public static string CarImageUpdated = "Araç resmi güncellenmiştir.";
+        public static string CarImageAdded = "Araç resmi  Eklenmiştir.";
+        public static string CarImageDeleted = "Araç resmi  Silinmiştir.";
+        public static string CarImageLimitExceeded = "Araç resmi en fazla 5 adet olabilir.";
+
+
     }
 }
 
