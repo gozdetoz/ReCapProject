@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -24,7 +25,10 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
+
+
         [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("admin")]
         public IResult Add(IFormFile file, CarImage carImage)
         {
             IResult result = BusinessRules.Run(CheckImageLimitExceeded(carImage.CarId));
@@ -38,7 +42,10 @@ namespace Business.Concrete
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
         }
+
+
         [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("admin")]
         public IResult Delete(CarImage carImage)
         {
             _carImageDal.Delete(carImage);
@@ -46,18 +53,26 @@ namespace Business.Concrete
 
         }
 
+
+
+
+        [SecuredOperation("admin")]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
+
+        [SecuredOperation("admin")]
         public IDataResult<CarImage> GetById(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.Id == id));
         }
 
 
+
         [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("admin")]
         public IResult Update(IFormFile file, CarImage carImage)
         {
             carImage.ImagePath = FileHelper.Update(_carImageDal.Get(p => p.Id == carImage.Id).ImagePath, file);
@@ -66,11 +81,16 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarImageUpdated);
         }
 
+        
+        
         [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("admin")]
         public IDataResult<List<CarImage>> GetImagesByCarId(int id)
         {
             return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(id));
         }
+
+
 
         private IResult CheckImageLimitExceeded(int carId)
         {
@@ -83,6 +103,8 @@ namespace Business.Concrete
             return new SuccessResult();
 
         }
+
+
 
         private List<CarImage> CheckIfCarImageNull(int id)
         {
